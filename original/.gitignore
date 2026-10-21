@@ -1,0 +1,57 @@
+# Generic
+.*
+!.git?*
+*~
+conftst*
+conftest*
+confdefs*
+
+# /
+/*.tmp
+/*.a
+/*.o
+/*.la
+/*.lai
+/*.lib
+/*.lo
+/*.so
+/*.so.[0-9]*
+/*.dll
+/*.def
+/*.exe
+/*.exp
+/*.obj
+/*.in
+/Makefile
+/aclocal.m4
+/autom4te.cache
+/compile
+/config.guess
+/config.h
+/config.log
+/config.status
+/config.sub
+/configure
+/depcomp
+/install-sh
+/libtool
+/ltmain.sh
+/missing
+/stamp-h1
+/README.TXT
+/API.TXT
+/FILEFORMAT.TXT
+/NEWS.TXT
+/ssdeep
+/ssdeep-[0-9]*
+/ssdeep.1
+!/ssdeep.1.in
+/*-win32res.rc
+!/*-win32res.rc.in
+
+# /m4/
+/m4/*.m4
+!/m4/ax_*.m4
+
+# /doc/
+/doc/
