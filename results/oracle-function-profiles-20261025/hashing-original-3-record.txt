@@ -1,0 +1,2 @@
+[ perf record: Woken up 4 times to write data ]
+[ perf record: Captured and wrote 0.803 MB /home/ubuntu/ssdeep-profile-20261025-o4Lbgc/profiles/hashing-original-3.data (26230 samples) ]

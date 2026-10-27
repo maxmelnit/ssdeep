@@ -1,0 +1,29 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 29K of event 'cycles:u'
+# Event count (approx.): 29927000000
+#
+# Overhead  Symbol                                                                                                                             IPC   [IPC Coverage]
+# ........  .................................................................................................................................  ....................
+#
+    54.13%  [.] copy_eliminate_sequences.constprop.0                                                                                           -      -            
+    18.63%  [.] score_strings                                                                                                                  -      -            
+     3.28%  [.] fuzzy_compare                                                                                                                  -      -            
+     2.48%  [.] 0x00000000000a2e80                                                                                                             -      -            
+     2.39%  [.] malloc                                                                                                                         -      -            
+     2.21%  [.] match_compare(state*, Filedata*)                                                                                               -      -            
+     1.99%  [.] 0x00000000000a2e84                                                                                                             -      -            
+     1.21%  [.] cfree                                                                                                                          -      -            
+     0.90%  [.] 0x00000000000a2e9c                                                                                                             -      -            
+     0.74%  [.] strncmp                                                                                                                        -      -            
+     0.70%  [.] 0x00000000000a2ed4                                                                                                             -      -            
+     0.55%  [.] 0x000000000004c560                                                                                                             -      -            
+     0.50%  [.] 0x00000000000a2e98                                                                                                             -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

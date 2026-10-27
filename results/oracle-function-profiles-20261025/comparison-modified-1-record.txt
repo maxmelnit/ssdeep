@@ -1,0 +1,2 @@
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.819 MB /home/ubuntu/ssdeep-profile-20261025-o4Lbgc/profiles/comparison-modified-1.data (26671 samples) ]

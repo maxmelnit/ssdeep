@@ -1,0 +1,51 @@
+Oracle A1 comparison profile
+============================
+
+System
+------
+Oracle Cloud VM.Standard.A1.Flex
+24 Arm Neoverse-N1 cores (one thread per core)
+32 GB memory
+Ubuntu 24.04.4 LTS, AArch64
+GCC 13.3.0
+
+Workload
+--------
+4,096 stored signatures
+OpenMP binding: OMP_PROC_BIND=spread, OMP_PLACES=cores
+
+Original sequential comparison (perf stat)
+------------------------------------------
+Task clock:       9,776.26 ms
+Cycles:           29,087,611,432
+Instructions:     76,375,243,124
+Elapsed time:     9.779367107 s
+User time:        9.773603000 s
+System time:      0.003001000 s
+
+Modified comparison with 24 threads (perf stat)
+------------------------------------------------
+Task clock:       9,121.71 ms
+Cycles:           26,805,046,233
+Instructions:     68,774,095,542
+Elapsed time:     0.432226764 s
+User time:        9.033040000 s
+System time:      0.087462000 s
+
+The modified process therefore used about 21.1 CPU cores on average
+(9.12171 / 0.43223). The original used about one CPU core.
+
+Original function hotspots (10K cycle samples)
+-----------------------------------------------
+52.39%  copy_eliminate_sequences
+19.31%  score_strings
+ 2.85%  fuzzy_compare
+ 2.57%  malloc
+ 2.53%  match_compare
+
+Modified function hotspots (10K cycle samples)
+-----------------------------------------------
+57.71%  copy_eliminate_sequences
+20.63%  score_strings
+ 2.78%  fuzzy_compare
+ 1.70%  find_matches_in_known OpenMP worker

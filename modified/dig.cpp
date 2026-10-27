@@ -350,7 +350,14 @@ bool process_normal(state *s, TCHAR *fn)
   clean_name(s,fn);
 
   if (should_hash(s,fn))
+  {
+    if (s->collect_files)
+    {
+      s->files_to_hash.push_back(std::basic_string<TCHAR>(fn));
+      return false;
+    }
     return (hash_file(s,fn));
+  }
 
   return false;
 }

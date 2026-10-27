@@ -26,6 +26,7 @@ static bool initialize_state(state *s)
 
   s->mode                  = mode_none;
   s->first_file_processed  = true;
+  s->collect_files         = false;
   s->found_meaningful_file = false;
   s->processed_file        = false;
 
@@ -294,6 +295,13 @@ int main(int argc, char **argv)
     if (!(s->mode & mode_sigcompare)) {
       goal = s->argc;
     }
+
+#ifndef _WIN32
+    // Discover paths first so each OpenMP iteration receives its own path.
+    // Signature-file modes do not hash raw files and keep their existing flow.
+    if (!MODE(mode_sigcompare) && !MODE(mode_compare_unknown))
+      s->collect_files = true;
+#endif
     
     while (count < goal)
     {
@@ -313,6 +321,14 @@ int main(int argc, char **argv)
       
       ++count;
     }
+
+#ifndef _WIN32
+    if (s->collect_files)
+    {
+      s->collect_files = false;
+      status = hash_collected_files(s) || status;
+    }
+#endif
 
     // If we processed files, but didn't find anything large enough
     // to be meaningful, we should display a warning message to the user.

@@ -1,0 +1,201 @@
+Analysis of sampling ssdeep-original (pid 13913) every 1 millisecond
+Process:         ssdeep-original [13913]
+Path:            /private/tmp/*/ssdeep-original
+Load Address:    0x100d9c000
+Identifier:      ssdeep-original
+Version:         0
+Code Type:       ARM64
+Platform:        macOS
+Parent Process:  zsh [13912]
+Target Type:     live task
+
+Date/Time:       2026-10-22 20:23:20.019 +1000
+Launch Time:     2026-10-22 20:23:19.978 +1000
+OS Version:      macOS 26.5.2 (25F84)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         3360K
+Physical footprint (peak):  3360K
+Idle exit:                  untracked
+----
+
+Call graph:
+    1685 Thread_15310325   DispatchQueue_1: com.apple.main-thread  (serial)
+      1685 start  (in dyld) + 6992  [0x18e323e00]
+        1685 main  (in ssdeep-original) + 1316  [0x100d9d324]
+          1685 find_matches_in_known(state*)  (in ssdeep-original) + 76  [0x100d9e680]
+            1265 match_compare(state*, Filedata*)  (in ssdeep-original) + 768  [0x100d9e530]
+            + 357 fuzzy_compare  (in ssdeep-original) + 584  [0x100da28b0]
+            + ! 277 score_strings  (in ssdeep-original) + 128,184,...  [0x100da2be4,0x100da2c1c,...]
+            + ! 80 score_strings  (in ssdeep-original) + 100  [0x100da2bc8]
+            + !   77 _platform_memset  (in libsystem_platform.dylib) + 140,160  [0x18e6eb11c,0x18e6eb130]
+            + !   3 __bzero  (in libsystem_platform.dylib) + 0  [0x18e6eb030]
+            + 220 fuzzy_compare  (in ssdeep-original) + 392  [0x100da27f0]
+            + ! 220 copy_eliminate_sequences  (in ssdeep-original) + 112,132,...  [0x100da2af4,0x100da2b08,...]
+            + 181 fuzzy_compare  (in ssdeep-original) + 612  [0x100da28cc]
+            + ! 125 score_strings  (in ssdeep-original) + 128,184,...  [0x100da2be4,0x100da2c1c,...]
+            + ! 56 score_strings  (in ssdeep-original) + 100  [0x100da2bc8]
+            + !   53 _platform_memset  (in libsystem_platform.dylib) + 140,160,...  [0x18e6eb11c,0x18e6eb130,...]
+            + !   2 __bzero  (in libsystem_platform.dylib) + 0  [0x18e6eb030]
+            + !   1 DYLD-STUB$$bzero  (in ssdeep-original) + 4  [0x100da3260]
+            + 159 fuzzy_compare  (in ssdeep-original) + 700,784,...  [0x100da2924,0x100da2978,...]
+            + 140 fuzzy_compare  (in ssdeep-original) + 436  [0x100da281c]
+            + ! 140 copy_eliminate_sequences  (in ssdeep-original) + 112,132,...  [0x100da2af4,0x100da2b08,...]
+            + 76 fuzzy_compare  (in ssdeep-original) + 356  [0x100da27cc]
+            + ! 76 copy_eliminate_sequences  (in ssdeep-original) + 112,132,...  [0x100da2af4,0x100da2b08,...]
+            + 49 fuzzy_compare  (in ssdeep-original) + 92  [0x100da26c4]
+            + ! 43 strtoul_l  (in libsystem_c.dylib) + 44,364,...  [0x18e57d3b0,0x18e57d4f0,...]
+            + ! 4 strtoul  (in libsystem_c.dylib) + 0  [0x18e57d360]
+            + ! 2 DYLD-STUB$$strtoul  (in ssdeep-original) + 4  [0x100da3470]
+            + 40 fuzzy_compare  (in ssdeep-original) + 172  [0x100da2714]
+            + ! 37 strtoul_l  (in libsystem_c.dylib) + 364,404,...  [0x18e57d4f0,0x18e57d518,...]
+            + ! 3 DYLD-STUB$$strtoul  (in ssdeep-original) + 4  [0x100da3470]
+            + 26 fuzzy_compare  (in ssdeep-original) + 956  [0x100da2a24]
+            + ! 22 score_strings  (in ssdeep-original) + 108,128,...  [0x100da2bd0,0x100da2be4,...]
+            + ! 4 score_strings  (in ssdeep-original) + 100  [0x100da2bc8]
+            + !   3 _platform_memset  (in libsystem_platform.dylib) + 140  [0x18e6eb11c]
+            + !   1 __bzero  (in libsystem_platform.dylib) + 24  [0x18e6eb048]
+            + 5 fuzzy_compare  (in ssdeep-original) + 148  [0x100da26fc]
+            + ! 5 __error  (in libsystem_kernel.dylib) + 4,0  [0x18e69e61c,0x18e69e618]
+            + 5 score_strings  (in ssdeep-original) + 420  [0x100da2d08]
+            + 5 strtoul_l  (in libsystem_c.dylib) + 572  [0x18e57d5c0]
+            + 2 fuzzy_compare  (in ssdeep-original) + 72  [0x100da26b0]
+            +   1 DYLD-STUB$$__error  (in ssdeep-original) + 4  [0x100da323c]
+            +   1 __error  (in libsystem_kernel.dylib) + 4  [0x18e69e61c]
+            146 match_compare(state*, Filedata*)  (in ssdeep-original) + 744  [0x100d9e518]
+            + 115 std::basic_string<char>::__init_copy_ctor_external(char const*, unsigned long)  (in ssdeep-original) + 100  [0x100d9e9cc]
+            + ! 111 operator new(unsigned long)  (in libc++abi.dylib) + 52  [0x18e6987e8]
+            + ! : 75 _xzm_xzone_malloc_tiny  (in libsystem_malloc.dylib) + 24,40,...  [0x18e503eec,0x18e503efc,...]
+            + ! : 15 <deduplicated_symbol>  (in libsystem_malloc.dylib) + 112,0,...  [0x18e4fe144,0x18e4fe0d4,...]
+            + ! : 12 _xzm_xzone_malloc  (in libsystem_malloc.dylib) + 324,192,...  [0x18e4fea04,0x18e4fe980,...]
+            + ! : 5 malloc_type_malloc  (in libsystem_malloc.dylib) + 28,44,...  [0x18e4f2000,0x18e4f2010,...]
+            + ! : 4 DYLD-STUB$$malloc_type_malloc  (in libc++abi.dylib) + 8,12  [0x18e698c18,0x18e698c1c]
+            + ! 3 DYLD-STUB$$operator new(unsigned long)  (in ssdeep-original) + 8,4  [0x100da31f8,0x100da31f4]
+            + ! 1 operator new(unsigned long)  (in libc++abi.dylib) + 0  [0x18e6987b4]
+            + 24 _platform_memmove  (in libsystem_platform.dylib) + 428,16,...  [0x18e6eb50c,0x18e6eb370,...]
+            + 5 std::basic_string<char>::__init_copy_ctor_external(char const*, unsigned long)  (in ssdeep-original) + 8,96,...  [0x100d9e970,0x100d9e9c8,...]
+            + 1 DYLD-STUB$$memmove  (in ssdeep-original) + 4  [0x100da338c]
+            + 1 operator new(unsigned long)  (in libc++abi.dylib) + 76  [0x18e698800]
+            104 match_compare(state*, Filedata*)  (in ssdeep-original) + 684  [0x100d9e4dc]
+            + 81 std::basic_string<char>::__init_copy_ctor_external(char const*, unsigned long)  (in ssdeep-original) + 100  [0x100d9e9cc]
+            + ! 61 operator new(unsigned long)  (in libc++abi.dylib) + 52  [0x18e6987e8]
+            + ! : 35 _xzm_xzone_malloc_tiny  (in libsystem_malloc.dylib) + 276,420,...  [0x18e503fe8,0x18e504078,...]
+            + ! : 9 <deduplicated_symbol>  (in libsystem_malloc.dylib) + 112,136,...  [0x18e4fe144,0x18e4fe15c,...]
+            + ! : 8 _xzm_xzone_malloc  (in libsystem_malloc.dylib) + 8,180,...  [0x18e4fe8c8,0x18e4fe974,...]
+            + ! : 8 malloc_type_malloc  (in libsystem_malloc.dylib) + 84,72,...  [0x18e4f2038,0x18e4f202c,...]
+            + ! : 1 DYLD-STUB$$malloc_type_malloc  (in libc++abi.dylib) + 12  [0x18e698c1c]
+            + ! 18 operator new(unsigned long)  (in libc++abi.dylib) + 0,36,...  [0x18e6987b4,0x18e6987d8,...]
+            + ! 2 DYLD-STUB$$operator new(unsigned long)  (in ssdeep-original) + 4  [0x100da31f4]
+            + 9 _platform_memmove  (in libsystem_platform.dylib) + 0,204,...  [0x18e6eb360,0x18e6eb42c,...]
+            + 7 std::basic_string<char>::__init_copy_ctor_external(char const*, unsigned long)  (in ssdeep-original) + 8,52,...  [0x100d9e970,0x100d9e99c,...]
+            + 5 operator new(unsigned long)  (in libc++abi.dylib) + 76  [0x18e698800]
+            + 2 DYLD-STUB$$memmove  (in ssdeep-original) + 0,4  [0x100da3388,0x100da338c]
+            70 match_compare(state*, Filedata*)  (in ssdeep-original) + 828  [0x100d9e56c]
+            + 31 _xzm_free  (in libsystem_malloc.dylib) + 996,28,...  [0x18e4ff450,0x18e4ff088,...]
+            + 22 _xzm_free  (in libsystem_malloc.dylib) + 1048  [0x18e4ff484]
+            + ! 21 mach_absolute_time  (in libsystem_kernel.dylib) + 108,112  [0x18e69e10c,0x18e69e110]
+            + ! 1 DYLD-STUB$$mach_absolute_time  (in libsystem_malloc.dylib) + 8  [0x18e516b14]
+            + 9 _free  (in libsystem_malloc.dylib) + 0,36,...  [0x18e50ec4c,0x18e50ec70,...]
+            + 4 _xzm_free  (in libsystem_malloc.dylib) + 352  [0x18e4ff1cc]
+            + ! 2 DYLD-STUB$$_platform_bzero  (in libsystem_malloc.dylib) + 8  [0x18e5167f4]
+            + ! 2 _platform_memset  (in libsystem_platform.dylib) + 160  [0x18e6eb130]
+            + 3 DYLD-STUB$$operator delete(void*)  (in ssdeep-original) + 4  [0x100da31e8]
+            + 1 DYLD-STUB$$free  (in libc++abi.dylib) + 0  [0x18e698bd0]
+            58 match_compare(state*, Filedata*)  (in ssdeep-original) + 844  [0x100d9e57c]
+            + 20 _xzm_free  (in libsystem_malloc.dylib) + 28,996,...  [0x18e4ff088,0x18e4ff450,...]
+            + 19 _xzm_free  (in libsystem_malloc.dylib) + 1048  [0x18e4ff484]
+            + ! 19 mach_absolute_time  (in libsystem_kernel.dylib) + 108,112,...  [0x18e69e10c,0x18e69e110,...]
+            + 8 _free  (in libsystem_malloc.dylib) + 36,0,...  [0x18e50ec70,0x18e50ec4c,...]
+            + 6 _xzm_free  (in libsystem_malloc.dylib) + 352  [0x18e4ff1cc]
+            + ! 3 DYLD-STUB$$_platform_bzero  (in libsystem_malloc.dylib) + 8,0  [0x18e5167f4,0x18e5167ec]
+            + ! 3 _platform_memset  (in libsystem_platform.dylib) + 160  [0x18e6eb130]
+            + 3 DYLD-STUB$$operator delete(void*)  (in ssdeep-original) + 4  [0x100da31e8]
+            + 2 DYLD-STUB$$free  (in libc++abi.dylib) + 8  [0x18e698bd8]
+            14 match_compare(state*, Filedata*)  (in ssdeep-original) + 172  [0x100d9e2dc]
+            + 9 DYLD-STUB$$_platform_strncmp  (in libsystem_platform.dylib) + 4,0  [0x18e6ef91c,0x18e6ef918]
+            + 4 _platform_strncmp$VARIANT$Base  (in libsystem_platform.dylib) + 0,52,...  [0x18e6ec9b0,0x18e6ec9e4,...]
+            + 1 DYLD-STUB$$strncmp  (in ssdeep-original) + 4  [0x100da3440]
+            11 match_compare(state*, Filedata*)  (in ssdeep-original) + 152  [0x100d9e2c8]
+            + 11 _platform_strlen  (in libsystem_platform.dylib) + 56,80,...  [0x18e6e8af8,0x18e6e8b10,...]
+            10 match_compare(state*, Filedata*)  (in ssdeep-original) + 684,796,...  [0x100d9e4dc,0x100d9e54c,...]
+            4 _xzm_free  (in libsystem_malloc.dylib) + 1560,1544,...  [0x18e4ff684,0x18e4ff674,...]
+            3 fuzzy_compare  (in ssdeep-original) + 1008,1012  [0x100da2a58,0x100da2a5c]
+
+Total number in stack (recursive counted multiple, when >=5):
+        5       _platform_memset  (in libsystem_platform.dylib) + 0  [0x18e6eb090]
+
+Sort by top of stack, same collapsed (when >= 5):
+        copy_eliminate_sequences  (in ssdeep-original)        436
+        score_strings  (in ssdeep-original)        429
+        fuzzy_compare  (in ssdeep-original)        162
+        _platform_memset  (in libsystem_platform.dylib)        138
+        _xzm_xzone_malloc_tiny  (in libsystem_malloc.dylib)        110
+        strtoul_l  (in libsystem_c.dylib)        85
+        _xzm_free  (in libsystem_malloc.dylib)        55
+        mach_absolute_time  (in libsystem_kernel.dylib)        40
+        _platform_memmove  (in libsystem_platform.dylib)        33
+        operator new(unsigned long)  (in libc++abi.dylib)        25
+        <deduplicated_symbol>  (in libsystem_malloc.dylib)        24
+        _xzm_xzone_malloc  (in libsystem_malloc.dylib)        20
+        _free  (in libsystem_malloc.dylib)        17
+        malloc_type_malloc  (in libsystem_malloc.dylib)        13
+        std::basic_string<char>::__init_copy_ctor_external(char const*, unsigned long)  (in ssdeep-original)        12
+        _platform_strlen  (in libsystem_platform.dylib)        11
+        match_compare(state*, Filedata*)  (in ssdeep-original)        10
+        DYLD-STUB$$_platform_strncmp  (in libsystem_platform.dylib)        9
+        DYLD-STUB$$operator delete(void*)  (in ssdeep-original)        6
+        __bzero  (in libsystem_platform.dylib)        6
+        __error  (in libsystem_kernel.dylib)        6
+        DYLD-STUB$$_platform_bzero  (in libsystem_malloc.dylib)        5
+        DYLD-STUB$$malloc_type_malloc  (in libc++abi.dylib)        5
+        DYLD-STUB$$operator new(unsigned long)  (in ssdeep-original)        5
+        DYLD-STUB$$strtoul  (in ssdeep-original)        5
+
+Binary Images:
+       0x100d9c000 -        0x100da53ff +ssdeep-original (0) <E0F91759-3DBD-3EA7-AADE-FA135B9C50D1> /tmp/*/ssdeep-original
+       0x18e27c000 -        0x18e2ceb4b  libobjc.A.dylib (951.7) <FF1D8AE4-ABEF-35F1-A30A-1183B9CB414F> /usr/lib/libobjc.A.dylib
+       0x18e2cf000 -        0x18e303d07  libdyld.dylib (1378) <B147D877-D0C2-388F-B38D-D3132E39905F> /usr/lib/system/libdyld.dylib
+       0x18e304000 -        0x18e3aa217  dyld (1.0.0 - 1378) <F924BDD3-4365-3466-9580-8B1B3FA8F857> /usr/lib/dyld
+       0x18e3ab000 -        0x18e3ae228  libsystem_blocks.dylib (96) <CC947089-488D-316B-A9C7-46DEC0F73145> /usr/lib/system/libsystem_blocks.dylib
+       0x18e3af000 -        0x18e40355f  libxpc.dylib (3102.120.13) <C40FCAE8-7A17-3D82-87CB-3DA4802ADEF1> /usr/lib/system/libxpc.dylib
+       0x18e404000 -        0x18e4249ff  libsystem_trace.dylib (1861.120.4) <D0FABAB3-5AE7-3F10-8C62-60CBF5D70850> /usr/lib/system/libsystem_trace.dylib
+       0x18e425000 -        0x18e4d35f7  libcorecrypto.dylib (1922.121.1) <A01A158D-6FE7-3B1C-A2C4-6BCB90D7314A> /usr/lib/system/libcorecrypto.dylib
+       0x18e4d4000 -        0x18e5241d7  libsystem_malloc.dylib (812.100.31) <5FAE4807-4D2B-3A95-A63A-DD96D3DA11B4> /usr/lib/system/libsystem_malloc.dylib
+       0x18e525000 -        0x18e56c23f  libdispatch.dylib (1542.100.32) <F071EFE4-299F-3089-ACC4-0025B8FFB52A> /usr/lib/system/libdispatch.dylib
+       0x18e56d000 -        0x18e56fffb  libsystem_featureflags.dylib (103) <71FCFFBD-85F8-3365-AFE0-BECEA4369122> /usr/lib/system/libsystem_featureflags.dylib
+       0x18e570000 -        0x18e5f0d9f  libsystem_c.dylib (1752.120.2) <694B7881-1BF3-3D0F-8F19-B50AE4E8EF8A> /usr/lib/system/libsystem_c.dylib
+       0x18e5f1000 -        0x18e681ae7  libc++.1.dylib (2100.43) <5013C0F8-84A9-3B56-9FEB-C353816A750F> /usr/lib/libc++.1.dylib
+       0x18e682000 -        0x18e69c75f  libc++abi.dylib (2100.43) <E482D257-E5A0-3816-BD97-7B39342958DA> /usr/lib/libc++abi.dylib
+       0x18e69d000 -        0x18e6da2af  libsystem_kernel.dylib (12377.121.10) <FCA53B98-3D6A-38B2-A0EC-DF0F7E05F171> /usr/lib/system/libsystem_kernel.dylib
+       0x18e6db000 -        0x18e6e7b3b  libsystem_pthread.dylib (539.100.4) <4F33683C-18C8-39A1-800B-2E3BD43BCC13> /usr/lib/system/libsystem_pthread.dylib
+       0x18e6e8000 -        0x18e6f0963  libsystem_platform.dylib (375.120.2) <160FD864-8D15-36FC-9E97-9725388CFAFE> /usr/lib/system/libsystem_platform.dylib
+       0x18e6f1000 -        0x18e7206eb  libsystem_info.dylib (600) <3D62F2D9-F516-31BF-83C7-E203D872300B> /usr/lib/system/libsystem_info.dylib
+       0x1926b8000 -        0x1926c1e5f  libsystem_darwin.dylib (1752.120.2) <8858F025-745A-388E-9544-080781CC9A69> /usr/lib/system/libsystem_darwin.dylib
+       0x192b23000 -        0x192b351b6  libsystem_notify.dylib (348.120.4) <64D76451-1E0C-369B-A631-54DA3140E083> /usr/lib/system/libsystem_notify.dylib
+       0x194df0000 -        0x194e0af7b  libsystem_networkextension.dylib (2226.121.1) <0331EE20-A1FB-3C0D-990A-F65939CFF505> /usr/lib/system/libsystem_networkextension.dylib
+       0x194e8d000 -        0x194ea4fdf  libsystem_asl.dylib (406) <F40838DF-2F15-3F62-970F-DEE25706BF1B> /usr/lib/system/libsystem_asl.dylib
+       0x196a4b000 -        0x196a53387  libsystem_symptoms.dylib (2169.120.7) <F5029F5C-1BF3-31C7-892E-BC8606AC829E> /usr/lib/system/libsystem_symptoms.dylib
+       0x19acef000 -        0x19ad27257  libsystem_containermanager.dylib (725.120.2) <518BE44D-AA31-31E6-B44B-A37AD5E47040> /usr/lib/system/libsystem_containermanager.dylib
+       0x19c100000 -        0x19c1045d7  libsystem_configuration.dylib (1405.120.5) <0F7BBC1C-3D50-3E59-A31F-E4672A80BCEB> /usr/lib/system/libsystem_configuration.dylib
+       0x19c105000 -        0x19c10b8cf  libsystem_sandbox.dylib (2680.120.12) <EC3A75EA-44C0-3A0B-9BF7-71C117B0A9C6> /usr/lib/system/libsystem_sandbox.dylib
+       0x19d75f000 -        0x19d7621fb  libquarantine.dylib (196.120.2) <5849009B-ACA3-3796-94C4-BBDF8D300EBA> /usr/lib/system/libquarantine.dylib
+       0x19defe000 -        0x19df04d03  libsystem_coreservices.dylib (191.4.5) <9576143B-C303-35A3-BA63-1FD06EDA2BB1> /usr/lib/system/libsystem_coreservices.dylib
+       0x19e489000 -        0x19e4c6a77  libsystem_m.dylib (3312.100.1) <A7E0863C-101A-31A0-922B-ED9B02626151> /usr/lib/system/libsystem_m.dylib
+       0x19e4c8000 -        0x19e4cb527  libmacho.dylib (1378) <755441B4-C034-3E3A-8E3C-F424FBB28261> /usr/lib/system/libmacho.dylib
+       0x19e4e5000 -        0x19e4f23a7  libcommonCrypto.dylib (600035) <CE357BB1-2D49-37CC-9FFE-D093936B1475> /usr/lib/system/libcommonCrypto.dylib
+       0x19e4f3000 -        0x19e4fcca3  libunwind.dylib (2100.2) <FC8F0C4E-6FB0-3E27-ABEF-B0FA720CD5E4> /usr/lib/system/libunwind.dylib
+       0x19e505000 -        0x19e50f7ff  libcopyfile.dylib (240) <8ACFAC7A-88E9-3EF4-853F-A9140FF110E5> /usr/lib/system/libcopyfile.dylib
+       0x19e510000 -        0x19e513987  libcompiler_rt.dylib (103.3) <AA79151F-C19D-3C7C-92F8-B10F04D82C1C> /usr/lib/system/libcompiler_rt.dylib
+       0x19e514000 -        0x19e51878b  libsystem_collections.dylib (1752.120.2) <72DB5BE7-EF78-37D0-8AAD-53E37CFE4287> /usr/lib/system/libsystem_collections.dylib
+       0x19e519000 -        0x19e51c4cf  libsystem_secinit.dylib (168.100.7) <E525C566-CDA4-3D99-B12B-1615FD54A1F3> /usr/lib/system/libsystem_secinit.dylib
+       0x19e51d000 -        0x19e51fbf7  libremovefile.dylib (85.100.6) <635E661D-80A7-340D-A165-3F7D318FDFC9> /usr/lib/system/libremovefile.dylib
+       0x19e520000 -        0x19e520f27  libkeymgr.dylib (31) <8C08891A-DF1C-3DCC-AB64-4742FD6BE9BA> /usr/lib/system/libkeymgr.dylib
+       0x19e521000 -        0x19e529e37  libsystem_dnssd.dylib (2881.120.11) <6F45DF3F-233B-3BC3-BA8C-B43E7DA884BF> /usr/lib/system/libsystem_dnssd.dylib
+       0x19e52a000 -        0x19e52f09b  libcache.dylib (95) <189B576E-6176-3F82-8FA4-5914B0BEAEE7> /usr/lib/system/libcache.dylib
+       0x19e530000 -        0x19e531ce3  libSystem.B.dylib (1356) <BA6A669A-3BB9-3BC7-85E8-8F0C1E68351E> /usr/lib/libSystem.B.dylib
+       0x2917ec000 -        0x2917f3349  libRosetta.dylib (367.9) <8651ED4F-6506-3788-B56B-32EE414A85CA> /usr/lib/libRosetta.dylib
+       0x293409000 -        0x29340ca4b  libsystem_darwindirectory.dylib (122) <CF277A2C-C818-3F16-8B3F-3C7B39FCD164> /usr/lib/system/libsystem_darwindirectory.dylib
+       0x29340d000 -        0x2934165d3  libsystem_eligibility.dylib (319.121.1) <DDAC0531-0262-3DDC-8EC8-80EB9438847A> /usr/lib/system/libsystem_eligibility.dylib
+       0x293417000 -        0x29341e88b  libsystem_sanitizers.dylib (26.1) <44C4234F-8B2D-38D3-A774-B4B3C75AF3A7> /usr/lib/system/libsystem_sanitizers.dylib
+       0x29341f000 -        0x29341fbb7  libsystem_trial.dylib (474.2.18.2) <68C583BA-AFF5-3916-86AE-6E38BFEF98D6> /usr/lib/system/libsystem_trial.dylib

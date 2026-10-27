@@ -77,6 +77,11 @@ typedef struct {
 
   bool       first_file_processed;
 
+  // File discovery stays sequential. The hashing engine processes the
+  // collected paths in parallel after discovery has finished.
+  bool       collect_files;
+  std::vector<std::basic_string<TCHAR> > files_to_hash;
+
   // Known hashes
   std::vector<Filedata *> all_files;
 
@@ -176,6 +181,7 @@ bool process_stdin(state *s);
 // Fuzzy Hashing Engine
 // *********************************************************************
 bool hash_file(state *s, TCHAR *fn);
+bool hash_collected_files(state *s);
 bool display_result(state *s, const TCHAR * fn, const char * sum);
 
 

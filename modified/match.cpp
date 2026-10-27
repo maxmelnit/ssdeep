@@ -20,6 +20,14 @@
 
 #include "match.h"
 
+#ifndef SSDEEP_COMPARISON_BATCH_SIZE
+#define SSDEEP_COMPARISON_BATCH_SIZE 1024
+#endif
+
+#if SSDEEP_COMPARISON_BATCH_SIZE < 1
+#error SSDEEP_COMPARISON_BATCH_SIZE must be at least 1
+#endif
+
 // The longest line we should encounter when reading files of known hashes 
 #define MAX_STR_LEN  2048
 
@@ -284,51 +292,98 @@ void handle_match(state *s,
 }
 
 
-bool match_compare(state *s, Filedata * f)
+static const int comparison_skipped = -2;
+
+
+static std::vector<int> calculate_comparison_scores(state *s,
+					     Filedata *f,
+					     bool parallel)
 {
-  if (NULL == s)
-    fatal_error("%s: Null state passed into match_compare", __progname);
+  const size_t file_count = s->all_files.size();
+  const size_t fn_len = _tcslen(f->get_filename());
+  const std::string& signature = f->get_signature_ref();
+  std::vector<int> scores(file_count, comparison_skipped);
 
-  bool status = false;  
-  size_t fn_len = _tcslen(f->get_filename());
-
-  std::vector<Filedata* >::const_iterator it;
-  for (it = s->all_files.begin() ; it != s->all_files.end() ; ++it)
+  const auto calculate_one = [&](size_t index)
   {
+    Filedata *known = s->all_files[index];
+
     // When in pretty mode, we still want to avoid printing
     // A matches A (100).
     if (s->mode & mode_match_pretty)
     {
       if (!(_tcsncmp(f->get_filename(),
-		     (*it)->get_filename(),
-		     std::max(fn_len,_tcslen((*it)->get_filename())))) &&
-	  (f->get_signature() == (*it)->get_signature()))
+			     known->get_filename(),
+			     std::max(fn_len,_tcslen(known->get_filename())))) &&
+		  (signature == known->get_signature_ref()))
       {
 	// Unless these results from different matching files (such as
 	// what happens in sigcompare mode). That being said, we have to
 	// be careful to avoid NULL values such as when working in 
 	// normal pretty print mode.
 	if (!f->has_match_file() ||
-	    f->get_match_file() == (*it)->get_match_file())
-	  continue;
+	    f->get_match_file_ref() == known->get_match_file_ref())
+	  return;
       }
     }
 
-    int score =  fuzzy_compare(f->get_signature().c_str(), 
-			       (*it)->get_signature().c_str());
+    scores[index] = fuzzy_compare(signature.c_str(),
+				  known->get_signature_ref().c_str());
+  };
+
+  // Score pairs in parallel, but leave output and clustering to the serial
+  // caller.
+  if (parallel)
+  {
+#pragma omp parallel for schedule(dynamic, 64)
+    for (long long index = 0; index < (long long)file_count; ++index)
+      calculate_one((size_t)index);
+  }
+  else
+  {
+    for (size_t index = 0; index < file_count; ++index)
+      calculate_one(index);
+  }
+
+  return scores;
+}
+
+
+static bool handle_comparison_scores(state *s,
+				     Filedata *f,
+				     const std::vector<int>& scores)
+{
+  bool status = false;
+
+  for (size_t index = 0; index < scores.size(); ++index)
+  {
+    const int score = scores[index];
+    if (score == comparison_skipped)
+      continue;
+
     if (-1 == score)
       print_error(s, "%s: Bad hashes in comparison", __progname);
     else
     {
       if (score > s->threshold || MODE(mode_display_all))
       {
-	handle_match(s,f,(*it),score);
+	handle_match(s,f,s->all_files[index],score);
 	status = true;
       }
     }
   }
-  
+
   return status;
+}
+
+
+bool match_compare(state *s, Filedata * f)
+{
+  if (NULL == s)
+    fatal_error("%s: Null state passed into match_compare", __progname);
+
+  return handle_comparison_scores(
+      s, f, calculate_comparison_scores(s, f, true));
 }
   
 
@@ -337,16 +392,38 @@ bool find_matches_in_known(state *s)
   if (NULL == s)
     return true;
 
-  // Walk the vector which contains all of the known files
-  std::vector<Filedata *>::const_iterator it;
-  for (it = s->all_files.begin() ; it != s->all_files.end() ; ++it)
+  // Compare a batch of signatures in parallel, then handle that batch in
+  // order. Batching avoids one OpenMP region per signature without storing
+  // the complete score matrix in memory.
+  const size_t file_count = s->all_files.size();
+  const size_t batch_size = SSDEEP_COMPARISON_BATCH_SIZE;
+  for (size_t batch_start = 0;
+       batch_start < file_count;
+       batch_start += batch_size)
   {
-    bool status = match_compare(s,*it);
-    // In pretty mode and sigcompare mode we need to display a blank
-    // line after each file. In clustering mode we don't display anything
-    // right now.
-    if (status && !(MODE(mode_cluster)))
-      print_status("");
+    const size_t remaining = file_count - batch_start;
+    const size_t batch_count = std::min(batch_size, remaining);
+    std::vector<std::vector<int> > batch_scores(batch_count);
+
+#pragma omp parallel for schedule(dynamic)
+    for (long long offset = 0; offset < (long long)batch_count; ++offset)
+    {
+      Filedata *file = s->all_files[batch_start + (size_t)offset];
+      batch_scores[(size_t)offset] =
+	calculate_comparison_scores(s, file, false);
+    }
+
+    for (size_t offset = 0; offset < batch_count; ++offset)
+    {
+      Filedata *file = s->all_files[batch_start + offset];
+      const bool status =
+	handle_comparison_scores(s, file, batch_scores[offset]);
+      // In pretty mode and sigcompare mode we need to display a blank
+      // line after each file. In clustering mode we don't display anything
+      // right now.
+      if (status && !(MODE(mode_cluster)))
+	print_status("");
+    }
   }
 
   return false;
@@ -413,4 +490,3 @@ bool match_compare_unknown(state *s, const char * fn)
 
   return false;
 }
-

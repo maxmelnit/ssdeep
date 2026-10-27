@@ -1,0 +1,10 @@
+/build/
+/build-*/
+/benchmark-data/
+/benchmark-large/
+/benchmark-results.csv
+/outputs/
+/submission/
+__pycache__/
+*.pyc
+.DS_Store

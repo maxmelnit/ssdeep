@@ -1,0 +1,20 @@
+# started on Thu Oct 22 12:37:50 2026
+
+
+ Performance counter stats for 'build/bin/ssdeep-original -r benchmark-data/hashing' (5 runs):
+
+                54      context-switches                 #      5.5 cs/sec  cs_per_second       ( +-  4.03% )
+                 0      cpu-migrations                   #      0.0 migrations/sec  migrations_per_second
+               136      page-faults                      #     13.8 faults/sec  page_faults_per_second  ( +-  0.28% )
+           9838.14 msec task-clock                       #      1.0 CPUs  CPUs_utilized         ( +-  0.05% )
+          11269509      L1-dcache-load-misses            #      0.0 %  l1d_miss_rate            ( +-  1.57% )  (37.50%)
+           3119497      branch-misses                    #      0.0 %  branch_miss_rate         ( +-  2.11% )  (25.00%)
+        8793557997      branches                         #    893.8 M/sec  branch_frequency     ( +-  0.44% )  (37.50%)
+       26931333672      cpu-cycles                       #      2.7 GHz  cycles_frequency       ( +-  0.04% )  (50.01%)
+       84788897290      instructions                     #      3.2 instructions  insn_per_cycle  ( +-  0.05% )  (49.99%)
+         151924558      stalled-cycles-frontend          #     0.01 frontend_cycles_idle        ( +-  1.52% )  (50.01%)
+        3537211851      stalled-cycles-backend           #     0.13 backend_cycles_idle         ( +-  0.21% )  (50.00%)
+        3530639270      stalled-cycles-backend           #     0.04 stalled_cycles_per_instruction  ( +-  0.18% )  (37.50%)
+
+       9.841009964 +- 0.005334019 seconds time elapsed  ( +-  0.05% )
+

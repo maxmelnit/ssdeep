@@ -1,0 +1,20 @@
+# started on Thu Oct 22 12:38:39 2026
+
+
+ Performance counter stats for 'env OMP_NUM_THREADS=24 OMP_PROC_BIND=spread OMP_PLACES=cores build/bin/ssdeep-modified -r benchmark-data/hashing' (5 runs):
+
+               175      context-switches                 #     10.4 cs/sec  cs_per_second       ( +-  6.94% )
+                24      cpu-migrations                   #      1.4 migrations/sec  migrations_per_second
+               360      page-faults                      #     21.4 faults/sec  page_faults_per_second  ( +-  0.09% )
+          16805.22 msec task-clock                       #     23.4 CPUs  CPUs_utilized         ( +-  0.15% )
+          13705352      L1-dcache-load-misses            #      0.0 %  l1d_miss_rate            ( +-  0.36% )  (37.57%)
+           4189858      branch-misses                    #      0.0 %  branch_miss_rate         ( +-  0.59% )  (25.04%)
+        8736629836      branches                         #    519.9 M/sec  branch_frequency     ( +-  0.18% )  (37.59%)
+       26935541641      cpu-cycles                       #      1.6 GHz  cycles_frequency       ( +-  0.05% )  (50.04%)
+       83897635813      instructions                     #      3.1 instructions  insn_per_cycle  ( +-  0.08% )  (50.03%)
+         184228928      stalled-cycles-frontend          #     0.01 frontend_cycles_idle        ( +-  0.50% )  (50.03%)
+        3692984775      stalled-cycles-backend           #     0.14 backend_cycles_idle         ( +-  0.09% )  (50.06%)
+        3808387550      stalled-cycles-backend           #     0.04 stalled_cycles_per_instruction  ( +-  0.09% )  (37.57%)
+
+       0.716644754 +- 0.001335927 seconds time elapsed  ( +-  0.19% )
+

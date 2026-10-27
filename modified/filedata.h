@@ -32,6 +32,7 @@ class Filedata
   /// Returns the file's fuzzy hash without a filename.
   /// std::string("[blocksize]:[sig1]:[sig2]")
   std::string get_signature(void) const { return m_signature; }
+  const std::string& get_signature_ref(void) const { return m_signature; }
 
   /// Returns the file's name
   /// RBF - Should this be a std::wstring?
@@ -42,6 +43,7 @@ class Filedata
   /// Returns the name of the file on the disk from which this file came
   /// RBF - Should this be a std::wstring?
   std::string get_match_file(void) const { return m_match_file; }
+  const std::string& get_match_file_ref(void) const { return m_match_file; }
 
   /// Returns true if this file belongs to a cluster of similar files
   bool has_cluster(void) const { return (m_cluster != NULL); }

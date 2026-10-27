@@ -1,0 +1,20 @@
+# started on Thu Oct 22 12:38:43 2026
+
+
+ Performance counter stats for 'build/bin/ssdeep-original -x -t 100 benchmark-data/comparison-signatures.ssdeep' (5 runs):
+
+                53      context-switches                 #      4.9 cs/sec  cs_per_second       ( +-  2.76% )
+                 0      cpu-migrations                   #      0.0 migrations/sec  migrations_per_second
+               434      page-faults                      #     40.2 faults/sec  page_faults_per_second  ( +-  0.06% )
+          10795.61 msec task-clock                       #      1.0 CPUs  CPUs_utilized         ( +-  0.15% )
+          60887216      L1-dcache-load-misses            #      0.2 %  l1d_miss_rate            ( +-  0.45% )  (37.48%)
+         159803395      branch-misses                    #      1.2 %  branch_miss_rate         ( +-  0.45% )  (25.02%)
+       13781879972      branches                         #   1276.6 M/sec  branch_frequency     ( +-  0.06% )  (37.52%)
+       29024599688      cpu-cycles                       #      2.7 GHz  cycles_frequency       ( +-  0.16% )  (50.02%)
+       76334709077      instructions                     #      2.6 instructions  insn_per_cycle  ( +-  0.04% )  (50.01%)
+         768594387      stalled-cycles-frontend          #     0.03 frontend_cycles_idle        ( +-  0.56% )  (50.01%)
+        2896129976      stalled-cycles-backend           #     0.10 backend_cycles_idle         ( +-  0.62% )  (50.00%)
+        2910661774      stalled-cycles-backend           #     0.04 stalled_cycles_per_instruction  ( +-  0.78% )  (37.48%)
+
+      10.798460036 +- 0.016638134 seconds time elapsed  ( +-  0.15% )
+
