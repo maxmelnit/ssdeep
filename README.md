@@ -275,6 +275,8 @@ given to each thread.
 
 ## Recorded results and submission
 
+To see the full performance report, see [performance_report.pdf](performance_report.pdf).
+
 I included some results from my previous runs.
 
 The final Oracle thread-count CSVs are
