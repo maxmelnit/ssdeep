@@ -1,3 +1,5 @@
+To see the full performance report, see [performance_report.pdf](performance_report.pdf).
+
 ## Contents
 
 I got the original ssdeep code from
@@ -274,8 +276,6 @@ A batch is shared between threads; it is not the number of signatures
 given to each thread.
 
 ## Recorded results and submission
-
-To see the full performance report, see [performance_report.pdf](performance_report.pdf).
 
 I included some results from my previous runs.
 
